@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Predict CO2 Emissions</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .prediction-result {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 30px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .prediction-value {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #28a745;
+        }
+        .form-section {
+            background-color: #f8f9fa;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+        label {
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/">CO2 Emissions Predictor</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/predict">Predict</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/explore">Explore Data</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/about">About</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Predict CO2 Emissions</h1>
+        
+        <!-- If prediction is available, show results -->
+        {% if prediction %}
+        <div class="prediction-result text-center">
+            <h2>Predicted CO2 Emissions for {{ country }}</h2>
+            <div class="prediction-value">{{ prediction }} kt</div>
+            <p class="lead mt-3">Based on the input parameters provided</p>
+            
+            <div class="row mt-4">
+                <div class="col-md-8 offset-md-2">
+                    <h4>Input Parameters</h4>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Indicator</th>
+                                <th>Value</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for indicator, value in features.items() %}
+                            <tr>
+                                <td>{{ indicator }}</td>
+                                <td>{{ "{:,.2f}".format(value) }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <a href="/predict" class="btn btn-primary mt-3">Make Another Prediction</a>
+        </div>
+        {% else %}
+        
+        <!-- Prediction Form -->
+        <div class="form-section">
+            <form method="post" action="/predict">
+                <div class="row mb-4">
+                    <div class="col-md-6 offset-md-3">
+                        <label for="country" class="form-label">Select Country</label>
+                        <select class="form-select" id="country" name="country" required>
+                            <option value="" selected disabled>Choose a country</option>
+                            {% for country in countries %}
+                            <option value="{{ country }}">{{ country }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    {% for indicator in indicators %}
+                    {% set indicator_id = indicator.replace(' ', '_').replace('(', '').replace(')', '').replace(',', '').replace('%', 'pct') %}
+                    <div class="col-md-6 mb-3">
+                        <label for="{{ indicator_id }}" class="form-label">{{ indicator }}</label>
+                        <input type="number" class="form-control" id="{{ indicator_id }}" name="{{ indicator_id }}" 
+                               step="any" value="{{ default_values[indicator] }}" required>
+                        <div class="form-text">
+                            {% if 'GDP' in indicator %}Enter GDP in US dollars
+                            {% elif 'Population' in indicator %}Enter total population
+                            {% elif 'Energy use' in indicator %}Enter energy use in kg of oil equivalent per capita
+                            {% elif 'Electric power' in indicator %}Enter electric power consumption in kWh per capita
+                            {% elif 'Urban population' in indicator %}Enter percentage of urban population
+                            {% elif 'Industry' in indicator %}Enter industry value added as percentage of GDP
+                            {% endif %}
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                
+                <div class="text-center mt-4">
+                    <button type="submit" class="btn btn-success btn-lg">Predict CO2 Emissions</button>
+                </div>
+            </form>
+        </div>
+        {% endif %}
+        
+        <div class="text-center mt-4 mb-5">
+            <a href="/explore" class="btn btn-outline-primary">Explore Historical Data</a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white mt-5 py-4">
+        <div class="container text-center">
+            <p>© 2025 CO2 Emissions Predictor | Machine Learning Project</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

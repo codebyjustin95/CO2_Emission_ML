@@ -1,0 +1,157 @@
+<!--<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CO2 Emission Prediction</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; padding: 50px; }
+        form { display: inline-block; }
+    </style>
+</head>
+<body>
+    <h1>Predict CO2 Emission</h1>
+    <form action="/predict" method="post">
+        <label for="year">Year:</label>
+        <input type="number" id="year" name="year" required><br><br>
+        <label for="country">Country:</label>
+        <input type="text" id="country" name="country" required><br><br>
+        <button type="submit">Predict</button>
+    </form>
+</body>
+</html>
+
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CO2 Emissions Predictor</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .hero-section {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('/static/images/earth.jpg');
+            background-size: cover;
+            color: white;
+            padding: 100px 0;
+            margin-bottom: 30px;
+            background-position: center;
+        }
+        .feature-card {
+            transition: transform 0.3s;
+            margin-bottom: 20px;
+            height: 100%;
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+        .icon-large {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            color: #28a745;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/">CO2 Emissions Predictor</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/predict">Predict</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/explore">Explore Data</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/about">About</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="hero-section">
+        <div class="container text-center">
+            <h1 class="display-4">Predicting CO2 Emissions</h1>
+            <p class="lead">Using machine learning to forecast carbon emissions by country</p>
+            <a href="/predict" class="btn btn-success btn-lg mt-3">Make a Prediction</a>
+        </div>
+    </div>
+
+    <!-- Features Section -->
+    <div class="container">
+        <h2 class="text-center mb-5">Project Features</h2>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card feature-card">
+                    <div class="card-body text-center">
+                        <div class="icon-large">📊</div>
+                        <h3>Data Visualization</h3>
+                        <p>Explore historical CO2 emissions data through interactive charts and visualizations.</p>
+                        <a href="/explore" class="btn btn-outline-success">Explore Data</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card feature-card">
+                    <div class="card-body text-center">
+                        <div class="icon-large">🔮</div>
+                        <h3>Predictive Analytics</h3>
+                        <p>Use our machine learning model to predict future CO2 emissions based on country factors.</p>
+                        <a href="/predict" class="btn btn-outline-success">Make Prediction</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card feature-card">
+                    <div class="card-body text-center">
+                        <div class="icon-large">🌍</div>
+                        <h3>Country Comparisons</h3>
+                        <p>Compare emissions across different countries and analyze contributing factors.</p>
+                        <a href="/explore" class="btn btn-outline-success">Compare Countries</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- About Project -->
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2">
+                <h2 class="text-center mb-4">About This Project</h2>
+                <p class="lead">
+                    This machine learning application uses historical data from global indicators to predict CO2 emissions by country. Our model incorporates factors such as GDP, population, energy usage, and industrial activity to generate accurate forecasts.
+                </p>
+                <p>
+                    The prediction system is powered by a Random Forest Regressor model trained on World Bank data indicators from 2000-2019. The model achieved 99.85% accuracy (R² score) on test data, making it a reliable tool for emissions forecasting.
+                </p>
+                <div class="text-center mt-4">
+                    <a href="/about" class="btn btn-outline-dark">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white mt-5 py-4">
+        <div class="container text-center">
+            <p>© 2025 CO2 Emissions Predictor | Machine Learning Project</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
