@@ -1,0 +1,262 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About CO2 Emissions Predictor</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .section-container {
+            background-color: #f8f9fa;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .methodology-list li {
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/">CO2 Emissions Predictor</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="/index">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/predict">Predict</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/explore">Explore Data</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="/about">About</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <h1 class="text-center mb-5">About CO2 Emissions Predictor</h1>
+        
+        <div class="section-container">
+            <h2>Project Overview</h2>
+            <p>
+                This project, <strong>Predicting CO2 Emission By Countries Using Machine Learning</strong>, aims to estimate future CO2 emissions for different countries
+                based on socio-economic and energy-related factors. By leveraging historical data and machine learning, we provide insights into emission trends
+                and enable data-driven decision-making for sustainability.
+            </p>
+        </div>
+
+        <div class="section-container">
+            <h2>How It Works?</h2>
+            <p>
+                Our system uses a <strong>Random Forest Regressor</strong> model trained on historical data, incorporating factors like GDP, energy consumption, population, and industrial activity.
+                Users can input country-specific values, and the model predicts CO2 emissions, offering a valuable tool for policymakers and researchers.
+            </p>
+        </div>
+
+        <div class="section-container">
+            <h2>Key Features</h2>
+            <ul class="methodology-list">
+                <li><strong>Real-Time Predictions:</strong> Get instant CO2 emission estimates by entering country-specific details.</li>
+                <li><strong>Interactive Visualizations:</strong> Explore historical CO2 trends with data-driven charts.</li>
+                <li><strong>Machine Learning Powered:</strong> A well-trained model that achieves high accuracy in CO2 predictions.</li>
+                <li><strong>Global Coverage:</strong> Supports predictions for multiple countries with comparative analysis.</li>
+            </ul>
+        </div>
+
+        <div class="section-container">
+            <h2>Future Enhancements</h2>
+            <p>
+                We plan to expand this project by integrating real-time datasets, enhancing model accuracy with deep learning techniques, and providing policy recommendations
+                based on emission trends.
+            </p>
+        </div>
+    </div>
+
+    <footer class="bg-dark text-white mt-5 py-4">
+        <div class="container text-center">
+            <p>© 2025 CO2 Emissions Predictor | Machine Learning Project</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About CO2 Emissions Predictor</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --ice-blue: rgba(230, 240, 255, 0.85);
+            --ice-blue-solid: #e6f0ff;
+            --dark-blue: #12416b;
+            --accent-blue: #9bc3f8;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+            padding-top: 76px;
+        }
+        
+        .navbar {
+            background-color: var(--ice-blue) !important;
+            backdrop-filter: blur(8px);
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            padding: 15px 0;
+            transition: all 0.3s ease;
+        }
+        
+        .navbar-brand, .nav-link {
+            color: var(--dark-blue) !important;
+            font-weight: 500;
+        }
+        
+        .nav-link.active {
+            color: var(--accent-blue) !important;
+            font-weight: 600;
+        }
+        
+        .nav-link:hover {
+            color: var(--accent-blue) !important;
+        }
+        
+        .section-container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+            border-top: 5px solid var(--accent-blue);
+        }
+        
+        .methodology-list li {
+            margin-bottom: 15px;
+        }
+        
+        h1 {
+            color: var(--dark-blue);
+            font-weight: 700;
+            margin-bottom: 40px;
+            text-align: center;
+            position: relative;
+        }
+        
+        h1::after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 3px;
+            background-color: var(--accent-blue);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        h2 {
+            color: var(--dark-blue);
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        
+        footer {
+            background-color: var(--ice-blue) !important;
+            color: var(--dark-blue) !important;
+            padding: 30px 0;
+            position: relative;
+            backdrop-filter: blur(8px);
+            box-shadow: 0 -2px 15px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="/">CO2 Emissions Predictor</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/index">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/predict">Predict</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/explore">Explore Data</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/about">About</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1>About CO2 Emissions Predictor</h1>
+        
+        <div class="section-container">
+            <h2>Project Overview</h2>
+            <p>
+                This project, <strong>Predicting CO2 Emission By Countries Using Machine Learning</strong>, aims to estimate future CO2 emissions for different countries
+                based on socio-economic and energy-related factors. By leveraging historical data and machine learning, we provide insights into emission trends
+                and enable data-driven decision-making for sustainability.
+            </p>
+        </div>
+
+        <div class="section-container">
+            <h2>How It Works?</h2>
+            <p>
+                Our system uses a <strong>Random Forest Regressor</strong> model trained on historical data, incorporating factors like GDP, energy consumption, population, and industrial activity.
+                Users can input country-specific values, and the model predicts CO2 emissions, offering a valuable tool for policymakers and researchers.
+            </p>
+        </div>
+
+        <div class="section-container">
+            <h2>Key Features</h2>
+            <ul class="methodology-list">
+                <li><strong>Real-Time Predictions:</strong> Get instant CO2 emission estimates by entering country-specific details.</li>
+                <li><strong>Interactive Visualizations:</strong> Explore historical CO2 trends with data-driven charts.</li>
+                <li><strong>Machine Learning Powered:</strong> A well-trained model that achieves high accuracy in CO2 predictions.</li>
+                <li><strong>Global Coverage:</strong> Supports predictions for multiple countries with comparative analysis.</li>
+            </ul>
+        </div>
+
+        <div class="section-container">
+            <h2>Future Enhancements</h2>
+            <p>
+                We plan to expand this project by integrating real-time datasets, enhancing model accuracy with deep learning techniques, and providing policy recommendations
+                based on emission trends.
+            </p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div>
+                    <p class="mb-0">© 2025 CO2 Emissions Predictor</p>
+                </div>
+                <div>
+                    <p class="mb-0">Machine Learning Project</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Predicting CO2 Emission By Countries Using ML</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+            overflow: hidden;
+            font-family: 'Roboto', sans-serif;
+        }
+        
+        #canvas {
+            display: block;
+            width: 100vw;
+            height: 100vh;
+        }
+        
+        .logo-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            z-index: 10;
+            width: 100%;
+        }
+        
+        .project-text {
+            color: #fff;
+            font-size: 24px;
+            letter-spacing: 2px;
+            font-weight: 300;
+            text-transform: uppercase;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: appearText 1.5s ease-out forwards 3s;
+        }
+        
+        .border-line {
+            height: 2px;
+            width: 0;
+            background-color: #0078d4;
+            margin: 15px auto 0;
+            position: relative;
+            animation: expandLine 1.2s ease-out forwards 4.5s;
+        }
+        
+        .splash-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+            z-index: 100;
+            transition: opacity 0.8s ease-in-out;
+        }
+        
+        .fade-out {
+            opacity: 0;
+            pointer-events: none;
+        }
+        
+        @keyframes appearText {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes expandLine {
+            0% { width: 0; }
+            100% { width: 300px; }
+        }
+    </style>
+</head>
+<body>
+    <div id="splash-screen" class="splash-screen">
+        <canvas id="canvas"></canvas>
+        
+        <div class="logo-container">
+            <div class="project-text">Predicting CO2 Emission By Countries Using ML</div>
+            <div class="border-line"></div>
+        </div>
+    </div>
+    
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+        
+        class Particle {
+            constructor() {
+                this.reset();
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.lifeTime = Math.random() * this.maxLifeTime;
+            }
+            
+            reset() {
+                this.x = Math.random() * canvas.width;
+                this.y = canvas.height + 10;
+                this.vx = (Math.random() - 0.5) * 1;
+                this.vy = -1 - Math.random() * 2;
+                this.size = 1 + Math.random() * 3;
+                this.alpha = 0;
+                this.maxAlpha = 0.3 + Math.random() * 0.4;
+                this.lifeTime = 0;
+                this.maxLifeTime = 100 + Math.random() * 150;
+            }
+            
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+                this.vx += (Math.random() - 0.5) * 0.1;
+                this.vx = Math.max(-1.5, Math.min(1.5, this.vx));
+                this.lifeTime++;
+                
+                if (this.lifeTime < 20) {
+                    this.alpha = (this.lifeTime / 20) * this.maxAlpha;
+                } else if (this.lifeTime > this.maxLifeTime - 30) {
+                    this.alpha = ((this.maxLifeTime - this.lifeTime) / 30) * this.maxAlpha;
+                }
+                
+                if (this.y < -20 || this.lifeTime >= this.maxLifeTime) {
+                    this.reset();
+                }
+            }
+            
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(0, 120, 212, ${this.alpha})`;
+                ctx.fill();
+            }
+        }
+        
+        const particles = [];
+        const particleCount = 150;
+        
+        for (let i = 0; i < particleCount; i++) {
+            particles.push(new Particle());
+        }
+        
+        let animationId;
+        
+        function animate() {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(particle => {
+                particle.update();
+                particle.draw();
+            });
+            animationId = requestAnimationFrame(animate);
+        }
+        
+        // Start animation
+        animate();
+        
+        // Transition to main page after animation completes
+        setTimeout(() => {
+            const splashScreen = document.getElementById('splash-screen');
+            splashScreen.classList.add('fade-out');
+            
+            // Redirect to index.html after fade-out
+            setTimeout(() => {
+                window.location.href = '/index';
+            }, 800); // Wait for fade-out transition to complete
+            
+            // Stop the animation to save resources
+            cancelAnimationFrame(animationId);
+        }, 6000); // Wait for the animations to complete (adjust as needed)
+    </script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+</body>
+</html>

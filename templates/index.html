@@ -1,0 +1,276 @@
+<!--<!--<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CO2 Emission Prediction</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; padding: 50px; }
+        form { display: inline-block; }
+    </style>
+</head>
+<body>
+    <h1>Predict CO2 Emission</h1>
+    <form action="/predict" method="post">
+        <label for="year">Year:</label>
+        <input type="number" id="year" name="year" required><br><br>
+        <label for="country">Country:</label>
+        <input type="text" id="country" name="country" required><br><br>
+        <button type="submit">Predict</button>
+    </form>
+</body>
+</html>
+
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CO2 Emissions Predictor</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --ice-blue: rgba(230, 240, 255, 0.85);
+            --ice-blue-solid: #e6f0ff;
+            --dark-blue: #12416b;
+            --accent-blue: #9bc3f8;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+        }
+        
+        .navbar {
+            background-color: var(--ice-blue) !important;
+            backdrop-filter: blur(8px);
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            padding: 15px 0;
+            transition: all 0.3s ease;
+        }
+        
+        .navbar-brand, .nav-link {
+            color: var(--dark-blue) !important;
+            font-weight: 500;
+        }
+        
+        .nav-link.active {
+            color: var(--accent-blue) !important;
+            font-weight: 600;
+        }
+        
+        .nav-link:hover {
+            color: var(--accent-blue) !important;
+        }
+        
+        .hero-section {
+            background:url('/static/images/peakpx.jpg');
+            background-size: cover;
+            color: white;
+            padding: 120px 0;
+            margin-bottom: 60px;
+            background-position: center;
+            position: relative;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero-section h1 {
+            font-weight: 700;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            margin-bottom: 20px;
+        }
+        
+        .hero-section p {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        .btn-custom {
+            background-color: #9bc3f8;
+            border: none;
+            font-weight: 500;
+            padding: 10px 25px;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-custom:hover {
+            background-color: #0860d4;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-card {
+            transition: transform 0.3s, box-shadow 0.3s;
+            margin-bottom: 30px;
+            height: 100%;
+            border: none;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
+        }
+        
+        .card-body {
+            padding: 2rem;
+        }
+        
+        .icon-large {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            color: var(--accent-blue);
+        }
+        
+        .section-title {
+            position: relative;
+            display: inline-block;
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 3px;
+            background-color: var(--accent-blue);
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        footer {
+            background-color: var(--ice-blue) !important;
+            color: var(--dark-blue) !important;
+            padding: 30px 0;
+            position: relative;
+            backdrop-filter: blur(8px);
+            box-shadow: 0 -2px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="/">CO2 Emissions Predictor</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/index">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/predict">Predict</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/explore">Explore Data</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/about">About</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="hero-section" style="margin-top: 76px;">
+        <div class="container text-center hero-content">
+            <h1 class="display-3">Predicting CO2 Emissions</h1>
+            <p class="lead">Using advanced machine learning to forecast carbon emissions by country</p>
+            <a href="/predict" class="btn btn-custom btn-lg mt-3">Make a Prediction</a>
+        </div>
+    </div>
+
+    <!-- Features Section -->
+    <div class="container">
+        <h2 class="text-center section-title">Project Features</h2>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card feature-card">
+                    <div class="card-body text-center">
+                        <div class="icon-large">📊</div>
+                        <h3>Data Visualization</h3>
+                        <p>Explore historical CO2 emissions data through interactive charts and visualizations.</p>
+                        <a href="/explore" class="btn btn-outline-success rounded-pill mt-3">Explore Data</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card feature-card">
+                    <div class="card-body text-center">
+                        <div class="icon-large">🔮</div>
+                        <h3>Predictive Analytics</h3>
+                        <p>Use our machine learning model to predict future CO2 emissions based on country factors.</p>
+                        <a href="/predict" class="btn btn-outline-success rounded-pill mt-3">Make Prediction</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card feature-card">
+                    <div class="card-body text-center">
+                        <div class="icon-large">🌍</div>
+                        <h3>Country Comparisons</h3>
+                        <p>Compare emissions across different countries and analyze contributing factors.</p>
+                        <a href="/explore" class="btn btn-outline-success rounded-pill mt-3">Compare Countries</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- About Project -->
+    <div class="container mt-5 mb-5">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2">
+                <h2 class="text-center section-title">About This Project</h2>
+                <p class="lead">
+                    This machine learning application uses historical data from global indicators to predict CO2 emissions by country. Our model incorporates factors such as GDP, population, energy usage, and industrial activity to generate accurate forecasts.
+                </p>
+                <p>
+                    The prediction system is powered by a Random Forest Regressor model trained on World Bank data indicators from 2000-2019. The model achieved 99.85% accuracy (R² score) on test data, making it a reliable tool for emissions forecasting.
+                </p>
+                <div class="text-center mt-4">
+                    <a href="/about" class="btn btn-outline-dark rounded-pill">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div>
+                    <p class="mb-0">© 2025 CO2 Emissions Predictor</p>
+                </div>
+                <div>
+                    <p class="mb-0">Machine Learning Project</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
